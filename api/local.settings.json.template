@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "CosmosDbEndpoint": "https://<your-cosmosdb-account>.documents.azure.com:443/",
+    "CosmosDbDatabaseName": "AzureResume",
+    "CosmosDbContainerName": "Counter"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "*"
+  }
+}
