@@ -28,14 +28,18 @@ namespace Api.Function
                 var response = req.CreateResponse(HttpStatusCode.OK);
                 response.Headers.Add("Content-Type", "application/json");
                 response.Headers.Add("Access-Control-Allow-Origin", "*");
-                
+
                 await response.WriteStringAsync(JsonSerializer.Serialize(new { count = counter.Count }));
                 return response;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                // var response = req.CreateResponse(HttpStatusCode.InternalServerError);
+                //await response.WriteStringAsync(JsonSerializer.Serialize(new { error = "Unable to get visitor count" }));
+                //return response;
                 var response = req.CreateResponse(HttpStatusCode.InternalServerError);
-                await response.WriteStringAsync(JsonSerializer.Serialize(new { error = "Unable to get visitor count" }));
+                await response.WriteStringAsync(JsonSerializer.Serialize(new { error = "Unable to get visitor count", detail = ex.Message }));
+                // Optional: Log exception if you have a logger, e.g. log.LogError(ex, "Error incrementing visitor count");
                 return response;
             }
         }
