@@ -17,11 +17,11 @@ jobs:
       # Step 1: Checkout the code
       - uses: actions/checkout@v3
 
-      # Step 2: Login to Azure secrets required if federated creds are set up)
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # Step 2: Login to Azure secrets required if federated creds are set up)--no need to login incase of az static web apps
+      #- name: Azure Login
+      #  uses: azure/login@v2
+      #  with:
+      #      creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 
       # Step 3: Deploy to Static Web App
@@ -30,6 +30,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }} # Optional if OIDC is set
           action: "upload"
-          app_location: "/frontend"        # Root folder of your app
-          api_location: "/api"         # If you have an API backend, set path here
-          output_location: "/"  # Build output folder (adjust to your framework)
+          app_location: "frontend"        # Root folder of your app
+          #api_location: "/api"    If you have an API backend, set path here
+          output_location: ""  # Build output folder (adjust to your framework)
