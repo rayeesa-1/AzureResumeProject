@@ -29,6 +29,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }} # Optional if OIDC is set
-          app_location: "frontend"        # Root folder of your app
-          api_location: ""         # If you have an API backend, set path here
+          action: "upload"
+          app_location: "/frontend"        # Root folder of your app
+          api_location: "/api"         # If you have an API backend, set path here
           output_location: "/"  # Build output folder (adjust to your framework)
