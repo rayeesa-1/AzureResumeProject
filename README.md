@@ -15,14 +15,14 @@ az cosmosdb sql role assignment create --resource-group "<name-of-existing-resou
 
 
 <br>
-<h3>Step3: Deploy function to Azure & then to Static Web Apps</h3>
-<h4>Deploy function to Azure</h4>
+<h3>Step3: Deployed function to Azure & then to Static Web Apps</h3>
+<h4>a. Deploy function to Azure</h4>
 <li> Created function on az portal-using Windows (rg of function should be same as rg of db)</li>
 <li> Commented out RID in api.csproject</li>
 <li> In vscode, go to Azure->Workspace->click on the local project and deploy to Function</li>
 <li> Updated cosmos db credentials(step2) On az portal In the func app env variables-application settings</li>
 <li> Updated the main.js with production URL(in the func app->get function URL);enabled CORS</li>
-<h4>Deployed to Static Web Apps </h4>
+<h4>b. Deployed to Static Web Apps </h4>
 <li>Using static web apps because deploying using storage account is not free.</li>
 <li>Created a static web app on the portal-choose token<br>
 <li>To deploy to static web app without authenticating to git can only be possible using command:<br>
@@ -30,7 +30,7 @@ az cosmosdb sql role assignment create --resource-group "<name-of-existing-resou
         => swa deploy ./ --app-name RayAzureStaicWebapp --env production --deployment-token YOUR_TOKEN_HERE<br>(./ is the folder where index.html is present)</li>
 <li> Updated the URL of static WebApp in CORS </li>
 
-<h4>Create a custom domain</h4>
+<h4>c. Created a custom domain</h4>
 <li>On the static web app->Custom Domains->Custom Domain on other DNS</LI>
 <li> Added and validated the custom domain-rayeesasite.com</li>
 <li>Updated the URL https://rayeesasite.com in CORS</li>
