@@ -1,13 +1,13 @@
 window.addEventListener('DOMContentLoaded', (event) =>{
     getVisitCount();
 })
-
+const productionApiUrl='https://rayazurefunctionapp-eab0dwarezbwaxhb.westus3-01.azurewebsites.net/api/GetVisitorCounter?'
 //const productionApiUrl = 'https://gpsazureresumecounter.azurewebsites.net/api/GetVisitorCounter?';
 const localApiUrl = 'http://localhost:7071/api/GetVisitorCounter';
 
 const getVisitCount = () => {
     let count = 30;
-    fetch(localApiUrl).then(response => {
+    fetch(productionApiUrl).then(response => {
         return response.json()
     }).then(response =>{
         console.log("Website called function API.");

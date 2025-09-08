@@ -6,7 +6,7 @@
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+    <!--RuntimeIdentifier>linux-x64</RuntimeIdentifier-->
     <RootNamespace>Api</RootNamespace>
   <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
