@@ -16,7 +16,7 @@ namespace Api.Function
         {
             _cosmosDbService = cosmosDbService;
         }
-
+        //function
         [Function("GetVisitorCounter")]
         public async Task<HttpResponseData> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequestData req)
