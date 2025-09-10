@@ -21,7 +21,7 @@ jobs:
       #- name: Azure Login
       #  uses: azure/login@v2
       #  with:
-      #      creds: ${{ secrets.AZURE_CREDENTIALS }}
+      #      creds: #${ secrets.AZURE_CREDENTIALS }}
 
 
       # Step 3: Deploy to Static Web App

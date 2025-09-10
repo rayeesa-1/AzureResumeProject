@@ -1,0 +1,54 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+    - 'api'
+    - 'tests'
+
+env:
+  AZURE_FUNCTIONAPP_NAME: 'RayAzureFunctionApp'   # set this to your function app name on Azure
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'api'       # set this to the path to your function app project, defaults to the repository root
+  DOTNET_VERSION: '8.0.x'                   # set this to the dotnet version to use (e.g. '2.1.x', '3.1.x', '5.0.x')
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    environment: dev
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v3
+
+    # Step 2: Login to Azure secrets required if federated creds are set up)--no need to login incase of az static web apps
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
+    - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: 'Resolve Project Dependencies Using Dotnet'
+      shell: pwsh
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        dotnet build --configuration Release --output ./output
+        popd
+
+    - name: 'Run Unit Test'
+      shell: pwsh
+      run: |
+        pushd './tests'
+        dotnet test
+
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
+      

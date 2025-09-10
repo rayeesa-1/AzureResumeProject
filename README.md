@@ -35,6 +35,26 @@ az cosmosdb sql role assignment create --resource-group "<name-of-existing-resou
 <li> Added and validated the custom domain-rayeesasite.com</li>
 <li>Updated the URL https://rayeesasite.com in CORS</li>
 
+<h3>Step 4: CI/CD with Github actions and Tests</h3>
+<li> Created workflows- frontend.yml and backend.yml
+<li> Created sp with --sdk-auth-> the json is stored as a secret on the github repo as AZURE_CREDENTIALS</li>
+<h4>a. Frontend workflow</h4>
+<li> Copied the code from Microsoft page and edited in frontend.yml</li>
+<li> Deploying to static web app when the push is made from the frontend folder</i>
+<h4>b. Implemented tests </h4>
+<li> Commands used:<ul>
+      <li> dotnet new xunit-creates test.csproj</li>
+      <li> dotnet add package Microsoft.Asp.NetCore.Mvc
+      <li> dotnet add reference ../api.csproj-Added reference of the function in test.csproj</li>
+      <li> dotnet test-to run the tests</li></ul></li>
+<h4>c. Deploying backend as CD using github actions</h4>
+<li> Copied the code from Microsoft page and edited in backend.yml</li>
+<li> Added a step for login and tests</li> 
+
+
+### Acknowledgment  
+This project was built by following [this YouTube video](https://youtu.be/ieYrBWmkfno?si=5C64yaW9NT4B22Ed) as a learning resource.  
+I customized it by deploying with **Azure Static Web Apps** instead of using **Azure Storage Blob**.
 
 
 
