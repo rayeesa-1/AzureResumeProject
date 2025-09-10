@@ -37,6 +37,7 @@ namespace Api.Function
                 // var response = req.CreateResponse(HttpStatusCode.InternalServerError);
                 //await response.WriteStringAsync(JsonSerializer.Serialize(new { error = "Unable to get visitor count" }));
                 //return response;
+                //needed logs so implemented this.
                 var response = req.CreateResponse(HttpStatusCode.InternalServerError);
                 await response.WriteStringAsync(JsonSerializer.Serialize(new { error = "Unable to get visitor count", detail = ex.Message }));
                 // Optional: Log exception if you have a logger, e.g. log.LogError(ex, "Error incrementing visitor count");
